@@ -2,7 +2,7 @@
 layout: post
 title:  "Back to Self Hosting"
 date:   2022-03-30 12:00:00 +0000
-visiblity: public
+hidden: false
 categories: Blog
 ---
 Hello, I wrote this blog just to check if my script is working. Let's short this thing. I'm back to self-hosting now! 

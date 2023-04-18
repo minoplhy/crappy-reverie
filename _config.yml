@@ -58,8 +58,9 @@ enforce_ssl:
 # then add in the baseurl here, like this: "/repository-name"
 baseurl: ""
 
+# Enable blog on index page
 index_blog: true
-
+# Enable share to twitter button in posts
 twitter_blog_share: false
 
 #
@@ -95,11 +96,19 @@ plugins:
 include: ['_pages']
 
 paginate: 3
-paginate_path: /page:num/
+paginate_path: /blog/page_:num
+
+# Sitemap configuration
+defaults:
+  -
+    scope:
+      path:            "**/*hidden_true*"
+    values:
+      sitemap:         false
 
 header_pages:
  - _pages/projects.md
- - _pages/search.md
+ - _pages/search_hidden_true.md
  - _pages/archive.md
  - _pages/about.md
 

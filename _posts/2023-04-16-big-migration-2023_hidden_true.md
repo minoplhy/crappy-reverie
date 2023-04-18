@@ -2,7 +2,7 @@
 layout: post
 title:  "farewall .one, I'm not gonna pay 15.99"
 date:   2023-04-16 12:00:00 +0000
-visiblity: hidden
+hidden: true
 categories: Blog
 ---
 

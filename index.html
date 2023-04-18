@@ -5,7 +5,6 @@ layout: default
 {% if site.index_blog == true %}
 <div class="posts">
   {% for post in paginator.posts %}
-  {% if post.visiblity == "public" %}
     <article class="post">
       <a href="{{ site.baseurl }}{{ post.url }}">
         <h1>{{ post.title }}</h1>
@@ -20,7 +19,6 @@ layout: default
 
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
-  {% endif %}
   {% endfor %}
 
   <!-- pagination -->
