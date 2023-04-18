@@ -16,4 +16,4 @@ Not Promises.LOL
 
 ##### And as usual, the testing image below vv
 
-![Test wowowowowowo](/assets/blog/mouse_bottr.png)
+![Test wowowowowowo](/assets/images/mouse_bottr.png)

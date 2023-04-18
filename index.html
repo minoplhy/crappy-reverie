@@ -2,6 +2,7 @@
 layout: default
 ---
 
+{% if site.index_blog == true %}
 <div class="posts">
   {% for post in paginator.posts %}
   {% if post.visiblity == "public" %}
@@ -49,3 +50,4 @@ layout: default
   </div>
   {% endif %}
 </div>
+{% endif %}

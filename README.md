@@ -13,12 +13,14 @@
 
 Reverie-Crappy is a fork of [amitmerchant1990/reverie](https://github.com/amitmerchant1990/reverie) with some adjustment.
 The following has been add/edited from the original :
-  - Dark Theme toggle (don't respect browser preferance) with DarkReader
-  - Remove . when post author doesn't present
-  - change file strcture
+  - Dark Theme toggle (don't respect browser preferance) with DarkReader.
+  - Remove . when post author doesn't present.
+  - change file strcture.
   - Post 'visiblity' when not set to public, will not be listed on site. It still appear on sitemap though.
   - More expand friendly navbar.
   - add gitea icon svg.
+  - choice to disable/enable Twitter share on buttom.
+  - choice to enable/disable blog on first page.
 
 
 Reverie is a [Jekyll](https://jekyllrb.com/)-powered theme which is simple and opinionated. It's actually a fork of [jekyll-now](https://github.com/barryclark/jekyll-now) with some additional features and personal touches which I've implemented to suit my needs for my blog.
