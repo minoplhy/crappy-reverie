@@ -3,14 +3,16 @@
   <head>
     <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
     {% seo title=false %}
+    {%- assign page_paths = site.header_pages | default: default_paths -%}
     {% include meta.html %}
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <script src="{{ site.baseurl }}/assets/js/darkreader.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/lightning.js"></script>
 
-    <meta name="theme-color" content="#000000">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/images/favicon-32x32.png">
     {% include analytics_head.html %}
   </head>
 
@@ -28,11 +30,15 @@
             </div>
 
             <nav>
-              <a href="{{ site.baseurl }}/">Home</a>
-              <a href="{{ site.baseurl }}/getting-started">Getting Started</a>
-              <a href="{{ site.baseurl }}/search">Search</a>
-              <a href="{{ site.baseurl }}/about">About</a>
-              <a href="{{ site.baseurl }}/archive">Archive</a>
+              {%- for path in page_paths -%}
+              {%- assign my_page = site.pages | where: "path", path | first -%}
+              {%- if my_page.title -%}
+              <a  href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+              {%- endif -%}
+            {%- endfor -%}
+            <a id="dark-mode-button" onclick="darkmode()" >
+              <span>🌙</span>
+            </a>            
             </nav>
           </header>
         </div>

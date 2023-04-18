@@ -1,6 +1,6 @@
 <div align="center">
   <br>
-  <img src="/images/reverie-text.png" alt="Reverie" width="200"/>
+  <img src="/assets/images/reverie-text.png" alt="Reverie" width="200"/>
   <br>  
   <p align="center">
     <i>Support my work via <a href="https://paypal.me/AmitMerchant">Paypal</a></i>
@@ -11,17 +11,27 @@
 
 ---
 
+Reverie-Crappy is a fork of [amitmerchant1990/reverie](https://github.com/amitmerchant1990/reverie) with some adjustment.
+The following has been add/edited from the original :
+  - Dark Theme toggle (don't respect browser preferance) with DarkReader
+  - Remove . when post author doesn't present
+  - change file strcture
+  - Post 'visiblity' when not set to public, will not be listed on site. It still appear on sitemap though.
+  - More expand friendly navbar.
+  - add gitea icon svg.
+
+
 Reverie is a [Jekyll](https://jekyllrb.com/)-powered theme which is simple and opinionated. It's actually a fork of [jekyll-now](https://github.com/barryclark/jekyll-now) with some additional features and personal touches which I've implemented to suit my needs for my blog.
 
 > [Theme demo](https://reverie.pages.dev/)
 
 This is a plug-and-play Jekyll theme best suited to use on [GitHub Pages](https://pages.github.com) (or [Cloudflare Pages](https://pages.cloudflare.com/) if you want to have your repository private) without even setting up a local environment.
 
-![](/images/reverie-demo.png)
+![](/assets/images/reverie-demo.png)
 
 |  Responsiveness            |  Search | Categories |
 |---------------------|----------------------|----------------------|
-|![Responsiveness](/images/mobile-demo.png) | ![search](/images/search.png) | ![categories](/images/categories.png) |
+|![Responsiveness](/assets/images/mobile-demo.png) | ![search](/assets/images/search.png) | ![categories](/assets/images/categories.png) |
 
 # Table of Contents
   - [Features overview](#features-overview)
