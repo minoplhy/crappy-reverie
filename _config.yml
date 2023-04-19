@@ -108,7 +108,8 @@ defaults:
 
 header_pages:
  - _pages/projects.md
- - _pages/search_hidden_true.md
+ - _pages/source.md
+# - _pages/search_hidden_true.md
  - _pages/archive.md
  - _pages/about.md
 

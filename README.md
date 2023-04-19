@@ -9,6 +9,8 @@ The following has been add/edited from the original :
   - choice to disable/enable Twitter share on buttom.
   - choice to enable/disable blog on first page.
   - any file contain "hidden_true" will be exclude from sitemap (via _config.yaml)
+  - add custom index upper(before blog)
+  - add seperated blog index page
 
 
 <div align="center">

@@ -2,6 +2,8 @@
 layout: default
 ---
 
+{%- include custom-index-upper.html -%}
+
 {% if site.index_blog == true %}
 <div class="posts">
   {% for post in paginator.posts %}
