@@ -4,4 +4,4 @@ title: Projects
 permalink: /projects/
 ---
 
-`placeholder`
+waiting to be fullfilled.
