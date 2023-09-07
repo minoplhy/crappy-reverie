@@ -35,7 +35,7 @@ footer-links:
   googleplus: # anything in your profile username that comes after plus.google.com/
   playconsole:
   mastodon: # <your-mastodon-instance>/@<your-user-name> eg. fosstodon.org/@username
-  gitea: waii.ch/p-p/minoplhy/crappy-reverie # <gitea-host>/<gitea-username>/<gitea-repository>
+  gitea: owu.se/p-p/minoplhy/crappy-reverie # <gitea-host>/<gitea-username>/<gitea-repository>
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
@@ -49,8 +49,8 @@ google_analytics:
 
 # Your website URL (e.g. http://amitmerchant1990.github.io or http://www.amitmerchant.com)
 # Used for Sitemap.xml and your RSS feed
-url: https://waii.ch
-enforce_ssl: https://waii.ch
+url: https://owu.se
+enforce_ssl: https://owu.se
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
