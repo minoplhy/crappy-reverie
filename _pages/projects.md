@@ -4,4 +4,8 @@ title: Projects
 permalink: /projects/
 ---
 
-waiting to be fullfilled.
+<br>
+
+<img src="/assets/images/chitose.gif" alt="Chitose" width="250"/>
+
+<center> waiting to be fullfilled.</center>

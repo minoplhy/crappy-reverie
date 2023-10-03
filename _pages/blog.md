@@ -1,9 +1,13 @@
 ---
-layout: page
-title: 
+layout: page_notitle
+title: Blog
 permalink: /blog/
 ---
 
+## <img src="/assets/images/toshino.gif" alt="Toshino Kyoko!" width="100"/> Yaw! Sometimes I write a blog, though mostly not.
+> <code style="color:black;">Blah, Please don't expect any informative or technical blogs. <img src="/assets/images/akari!!_thumbsup.gif" alt="Akari!!!!" width="100"/></code>
+
+<hr>
 
 <div class="posts">
   {% for post in site.posts %}
