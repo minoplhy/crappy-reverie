@@ -1,5 +1,5 @@
 /**
- * Dark Reader v4.9.58
+ * Dark Reader v4.9.66
  * https://darkreader.org/
  */
 
@@ -28,6 +28,7 @@
     OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
+    /* global Reflect, Promise, SuppressedError, Symbol */
 
     var __assign = function () {
         __assign =
@@ -107,7 +108,7 @@
         }
         function step(op) {
             if (f) throw new TypeError("Generator is already executing.");
-            while (_)
+            while ((g && ((g = 0), op[0] && (_ = 0)), _))
                 try {
                     if (
                         ((f = 1),
@@ -232,58 +233,95 @@
         return to.concat(ar || Array.prototype.slice.call(from));
     }
 
-    var MessageType;
-    (function (MessageType) {
-        MessageType["UI_GET_DATA"] = "ui-get-data";
-        MessageType["UI_SUBSCRIBE_TO_CHANGES"] = "ui-subscribe-to-changes";
-        MessageType["UI_UNSUBSCRIBE_FROM_CHANGES"] =
-            "ui-unsubscribe-from-changes";
-        MessageType["UI_CHANGE_SETTINGS"] = "ui-change-settings";
-        MessageType["UI_SET_THEME"] = "ui-set-theme";
-        MessageType["UI_SET_SHORTCUT"] = "ui-set-shortcut";
-        MessageType["UI_TOGGLE_ACTIVE_TAB"] = "ui-toggle-active-tab";
-        MessageType["UI_MARK_NEWS_AS_READ"] = "ui-mark-news-as-read";
-        MessageType["UI_MARK_NEWS_AS_DISPLAYED"] = "ui-mark-news-as-displayed";
-        MessageType["UI_LOAD_CONFIG"] = "ui-load-config";
-        MessageType["UI_APPLY_DEV_DYNAMIC_THEME_FIXES"] =
-            "ui-apply-dev-dynamic-theme-fixes";
-        MessageType["UI_RESET_DEV_DYNAMIC_THEME_FIXES"] =
-            "ui-reset-dev-dynamic-theme-fixes";
-        MessageType["UI_APPLY_DEV_INVERSION_FIXES"] =
-            "ui-apply-dev-inversion-fixes";
-        MessageType["UI_RESET_DEV_INVERSION_FIXES"] =
-            "ui-reset-dev-inversion-fixes";
-        MessageType["UI_APPLY_DEV_STATIC_THEMES"] =
-            "ui-apply-dev-static-themes";
-        MessageType["UI_RESET_DEV_STATIC_THEMES"] =
-            "ui-reset-dev-static-themes";
-        MessageType["UI_SAVE_FILE"] = "ui-save-file";
-        MessageType["UI_REQUEST_EXPORT_CSS"] = "ui-request-export-css";
-        MessageType["UI_COLOR_SCHEME_CHANGE"] = "ui-color-scheme-change";
-        MessageType["BG_CHANGES"] = "bg-changes";
-        MessageType["BG_ADD_CSS_FILTER"] = "bg-add-css-filter";
-        MessageType["BG_ADD_STATIC_THEME"] = "bg-add-static-theme";
-        MessageType["BG_ADD_SVG_FILTER"] = "bg-add-svg-filter";
-        MessageType["BG_ADD_DYNAMIC_THEME"] = "bg-add-dynamic-theme";
-        MessageType["BG_EXPORT_CSS"] = "bg-export-css";
-        MessageType["BG_UNSUPPORTED_SENDER"] = "bg-unsupported-sender";
-        MessageType["BG_CLEAN_UP"] = "bg-clean-up";
-        MessageType["BG_RELOAD"] = "bg-reload";
-        MessageType["BG_FETCH_RESPONSE"] = "bg-fetch-response";
-        MessageType["BG_UI_UPDATE"] = "bg-ui-update";
-        MessageType["BG_CSS_UPDATE"] = "bg-css-update";
-        MessageType["CS_COLOR_SCHEME_CHANGE"] = "cs-color-scheme-change";
-        MessageType["CS_FRAME_CONNECT"] = "cs-frame-connect";
-        MessageType["CS_FRAME_FORGET"] = "cs-frame-forget";
-        MessageType["CS_FRAME_FREEZE"] = "cs-frame-freeze";
-        MessageType["CS_FRAME_RESUME"] = "cs-frame-resume";
-        MessageType["CS_EXPORT_CSS_RESPONSE"] = "cs-export-css-response";
-        MessageType["CS_FETCH"] = "cs-fetch";
-        MessageType["CS_DARK_THEME_DETECTED"] = "cs-dark-theme-detected";
-        MessageType["CS_DARK_THEME_NOT_DETECTED"] =
-            "cs-dark-theme-not-detected";
-        MessageType["CS_LOG"] = "cs-log";
-    })(MessageType || (MessageType = {}));
+    typeof SuppressedError === "function"
+        ? SuppressedError
+        : function (error, suppressed, message) {
+              var e = new Error(message);
+              return (
+                  (e.name = "SuppressedError"),
+                  (e.error = error),
+                  (e.suppressed = suppressed),
+                  e
+              );
+          };
+
+    var MessageTypeUItoBG;
+    (function (MessageTypeUItoBG) {
+        MessageTypeUItoBG["GET_DATA"] = "ui-bg-get-data";
+        MessageTypeUItoBG["GET_DEVTOOLS_DATA"] = "ui-bg-get-devtools-data";
+        MessageTypeUItoBG["SUBSCRIBE_TO_CHANGES"] =
+            "ui-bg-subscribe-to-changes";
+        MessageTypeUItoBG["UNSUBSCRIBE_FROM_CHANGES"] =
+            "ui-bg-unsubscribe-from-changes";
+        MessageTypeUItoBG["CHANGE_SETTINGS"] = "ui-bg-change-settings";
+        MessageTypeUItoBG["SET_THEME"] = "ui-bg-set-theme";
+        MessageTypeUItoBG["TOGGLE_ACTIVE_TAB"] = "ui-bg-toggle-active-tab";
+        MessageTypeUItoBG["MARK_NEWS_AS_READ"] = "ui-bg-mark-news-as-read";
+        MessageTypeUItoBG["MARK_NEWS_AS_DISPLAYED"] =
+            "ui-bg-mark-news-as-displayed";
+        MessageTypeUItoBG["LOAD_CONFIG"] = "ui-bg-load-config";
+        MessageTypeUItoBG["APPLY_DEV_DYNAMIC_THEME_FIXES"] =
+            "ui-bg-apply-dev-dynamic-theme-fixes";
+        MessageTypeUItoBG["RESET_DEV_DYNAMIC_THEME_FIXES"] =
+            "ui-bg-reset-dev-dynamic-theme-fixes";
+        MessageTypeUItoBG["APPLY_DEV_INVERSION_FIXES"] =
+            "ui-bg-apply-dev-inversion-fixes";
+        MessageTypeUItoBG["RESET_DEV_INVERSION_FIXES"] =
+            "ui-bg-reset-dev-inversion-fixes";
+        MessageTypeUItoBG["APPLY_DEV_STATIC_THEMES"] =
+            "ui-bg-apply-dev-static-themes";
+        MessageTypeUItoBG["RESET_DEV_STATIC_THEMES"] =
+            "ui-bg-reset-dev-static-themes";
+        MessageTypeUItoBG["COLOR_SCHEME_CHANGE"] = "ui-bg-color-scheme-change";
+        MessageTypeUItoBG["HIDE_HIGHLIGHTS"] = "ui-bg-hide-highlights";
+    })(MessageTypeUItoBG || (MessageTypeUItoBG = {}));
+    var MessageTypeBGtoUI;
+    (function (MessageTypeBGtoUI) {
+        MessageTypeBGtoUI["CHANGES"] = "bg-ui-changes";
+    })(MessageTypeBGtoUI || (MessageTypeBGtoUI = {}));
+    var DebugMessageTypeBGtoUI;
+    (function (DebugMessageTypeBGtoUI) {
+        DebugMessageTypeBGtoUI["CSS_UPDATE"] = "debug-bg-ui-css-update";
+        DebugMessageTypeBGtoUI["UPDATE"] = "debug-bg-ui-update";
+    })(DebugMessageTypeBGtoUI || (DebugMessageTypeBGtoUI = {}));
+    var MessageTypeBGtoCS;
+    (function (MessageTypeBGtoCS) {
+        MessageTypeBGtoCS["ADD_CSS_FILTER"] = "bg-cs-add-css-filter";
+        MessageTypeBGtoCS["ADD_DYNAMIC_THEME"] = "bg-cs-add-dynamic-theme";
+        MessageTypeBGtoCS["ADD_STATIC_THEME"] = "bg-cs-add-static-theme";
+        MessageTypeBGtoCS["ADD_SVG_FILTER"] = "bg-cs-add-svg-filter";
+        MessageTypeBGtoCS["CLEAN_UP"] = "bg-cs-clean-up";
+        MessageTypeBGtoCS["FETCH_RESPONSE"] = "bg-cs-fetch-response";
+        MessageTypeBGtoCS["UNSUPPORTED_SENDER"] = "bg-cs-unsupported-sender";
+    })(MessageTypeBGtoCS || (MessageTypeBGtoCS = {}));
+    var DebugMessageTypeBGtoCS;
+    (function (DebugMessageTypeBGtoCS) {
+        DebugMessageTypeBGtoCS["RELOAD"] = "debug-bg-cs-reload";
+    })(DebugMessageTypeBGtoCS || (DebugMessageTypeBGtoCS = {}));
+    var MessageTypeCStoBG;
+    (function (MessageTypeCStoBG) {
+        MessageTypeCStoBG["COLOR_SCHEME_CHANGE"] = "cs-bg-color-scheme-change";
+        MessageTypeCStoBG["DARK_THEME_DETECTED"] = "cs-bg-dark-theme-detected";
+        MessageTypeCStoBG["DARK_THEME_NOT_DETECTED"] =
+            "cs-bg-dark-theme-not-detected";
+        MessageTypeCStoBG["FETCH"] = "cs-bg-fetch";
+        MessageTypeCStoBG["DOCUMENT_CONNECT"] = "cs-bg-document-connect";
+        MessageTypeCStoBG["DOCUMENT_FORGET"] = "cs-bg-document-forget";
+        MessageTypeCStoBG["DOCUMENT_FREEZE"] = "cs-bg-document-freeze";
+        MessageTypeCStoBG["DOCUMENT_RESUME"] = "cs-bg-document-resume";
+    })(MessageTypeCStoBG || (MessageTypeCStoBG = {}));
+    var DebugMessageTypeCStoBG;
+    (function (DebugMessageTypeCStoBG) {
+        DebugMessageTypeCStoBG["LOG"] = "debug-cs-bg-log";
+    })(DebugMessageTypeCStoBG || (DebugMessageTypeCStoBG = {}));
+    var MessageTypeCStoUI;
+    (function (MessageTypeCStoUI) {
+        MessageTypeCStoUI["EXPORT_CSS_RESPONSE"] = "cs-ui-export-css-response";
+    })(MessageTypeCStoUI || (MessageTypeCStoUI = {}));
+    var MessageTypeUItoCS;
+    (function (MessageTypeUItoCS) {
+        MessageTypeUItoCS["EXPORT_CSS"] = "ui-cs-export-css";
+    })(MessageTypeUItoCS || (MessageTypeUItoCS = {}));
 
     var isNavigatorDefined = typeof navigator !== "undefined";
     var userAgent = isNavigatorDefined
@@ -306,15 +344,10 @@
         : "some platform";
     var isChromium =
         userAgent.includes("chrome") || userAgent.includes("chromium");
-    var isThunderbird = userAgent.includes("thunderbird");
     var isFirefox =
         userAgent.includes("firefox") ||
-        userAgent.includes("librewolf") ||
-        isThunderbird;
-    userAgent.includes("vivaldi");
-    userAgent.includes("yabrowser");
-    userAgent.includes("opr") || userAgent.includes("opera");
-    userAgent.includes("edg");
+        userAgent.includes("thunderbird") ||
+        userAgent.includes("librewolf");
     var isSafari = userAgent.includes("safari") && !isChromium;
     var isWindows = platform.startsWith("win");
     var isMacOS = platform.startsWith("mac");
@@ -348,12 +381,22 @@
         }
     })();
     var isCSSColorSchemePropSupported = (function () {
-        if (typeof document === "undefined") {
+        try {
+            if (typeof document === "undefined") {
+                return false;
+            }
+            var el = document.createElement("div");
+            if (!el || typeof el.style !== "object") {
+                return false;
+            }
+            if (typeof el.style.colorScheme === "string") {
+                return true;
+            }
+            el.setAttribute("style", "color-scheme: dark");
+            return el.style.colorScheme === "dark";
+        } catch (e) {
             return false;
         }
-        var el = document.createElement("div");
-        el.setAttribute("style", "color-scheme: dark");
-        return el.style && el.style.colorScheme === "dark";
     })();
 
     function getOKResponse(url, mimeType, origin) {
@@ -505,7 +548,12 @@
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        if (!(args[0] && args[0].type === MessageType.CS_FETCH))
+                        if (
+                            !(
+                                args[0] &&
+                                args[0].type === MessageTypeCStoBG.FETCH
+                            )
+                        )
                             return [3, 8];
                         id_1 = args[0].id;
                         _b.label = 1;
@@ -530,7 +578,7 @@
                     case 6:
                         messageListeners.forEach(function (cb) {
                             return cb({
-                                type: MessageType.BG_FETCH_RESPONSE,
+                                type: MessageTypeBGtoCS.FETCH_RESPONSE,
                                 data: text_1,
                                 error: null,
                                 id: id_1
@@ -542,7 +590,7 @@
                         console.error(error_1);
                         messageListeners.forEach(function (cb) {
                             return cb({
-                                type: MessageType.BG_FETCH_RESPONSE,
+                                type: MessageTypeBGtoCS.FETCH_RESPONSE,
                                 data: null,
                                 error: error_1,
                                 id: id_1
@@ -848,7 +896,7 @@
                 start = now;
                 attempts = 1;
             }
-            if (mode === "parent") {
+            if (mode === "head") {
                 if (prevSibling && prevSibling.parentNode !== parent) {
                     stop();
                     return;
@@ -863,16 +911,23 @@
                     updateParent(prevSibling.parentNode);
                 }
             }
+            if (mode === "head" && !parent.isConnected) {
+                parent = document.head;
+            }
             parent.insertBefore(
                 node,
-                prevSibling ? prevSibling.nextSibling : parent.firstChild
+                prevSibling && prevSibling.isConnected
+                    ? prevSibling.nextSibling
+                    : parent.firstChild
             );
             observer.takeRecords();
             onRestore && onRestore();
         });
         var observer = new MutationObserver(function () {
             if (
-                (mode === "parent" && node.parentNode !== parent) ||
+                (mode === "head" &&
+                    (node.parentNode !== parent ||
+                        !node.parentNode.isConnected)) ||
                 (mode === "prev-sibling" &&
                     node.previousSibling !== prevSibling)
             ) {
@@ -1646,7 +1701,7 @@
             var c = $color[i];
             if ((c >= "0" && c <= "9") || c === "." || c === "+" || c === "-") {
                 isMining = true;
-            } else if (isMining && (c === " " || c === ",")) {
+            } else if (isMining && (c === " " || c === "," || c === "/")) {
                 numbers.push($color.substring(prevPos, i));
                 isMining = false;
                 prevPos = i + 1;
@@ -2469,7 +2524,30 @@
         return toSVGMatrix(createFilterMatrix(config));
     }
 
-    var counter = 0;
+    function hexify(number) {
+        return (number < 16 ? "0" : "") + number.toString(16);
+    }
+    function generateUID() {
+        if ("randomUUID" in crypto) {
+            var uuid = crypto.randomUUID();
+            return (
+                uuid.substring(0, 8) +
+                uuid.substring(9, 13) +
+                uuid.substring(14, 18) +
+                uuid.substring(19, 23) +
+                uuid.substring(24)
+            );
+        }
+        if ("getRandomValues" in crypto) {
+            return Array.from(crypto.getRandomValues(new Uint8Array(16)))
+                .map(function (x) {
+                    return hexify(x);
+                })
+                .join("");
+        }
+        return Math.floor(Math.random() * Math.pow(2, 55)).toString(36);
+    }
+
     var resolvers$1 = new Map();
     var rejectors = new Map();
     function bgFetch(request) {
@@ -2478,11 +2556,11 @@
                 return [
                     2,
                     new Promise(function (resolve, reject) {
-                        var id = ++counter;
+                        var id = generateUID();
                         resolvers$1.set(id, resolve);
                         rejectors.set(id, reject);
                         chrome.runtime.sendMessage({
-                            type: MessageType.CS_FETCH,
+                            type: MessageTypeCStoBG.FETCH,
                             data: request,
                             id: id
                         });
@@ -2496,7 +2574,7 @@
             data = _a.data,
             error = _a.error,
             id = _a.id;
-        if (type === MessageType.BG_FETCH_RESPONSE) {
+        if (type === MessageTypeBGtoCS.FETCH_RESPONSE) {
             var resolve = resolvers$1.get(id);
             var reject = rejectors.get(id);
             resolvers$1.delete(id);
@@ -2658,7 +2736,7 @@
         canvas = document.createElement("canvas");
         canvas.width = maxWidth;
         canvas.height = maxHeight;
-        context = canvas.getContext("2d");
+        context = canvas.getContext("2d", {willReadFrequently: true});
         context.imageSmoothingEnabled = false;
     }
     function removeCanvas() {
@@ -2674,7 +2752,13 @@
             naturalHeight = image.naturalHeight;
         if (naturalHeight === 0 || naturalWidth === 0) {
             logWarn("logWarn(Image is empty ".concat(image.currentSrc, ")"));
-            return null;
+            return {
+                isDark: false,
+                isLight: false,
+                isTransparent: false,
+                isLarge: false,
+                isTooLarge: false
+            };
         }
         var size = naturalWidth * naturalHeight * 4;
         if (size > MAX_IMAGE_SIZE) {
@@ -2794,44 +2878,44 @@
         var startIndex = conicGradient.length;
         var _loop_1 = function () {
             var typeGradient;
-            [linearGradient, radialGradient, conicGradient].find(function (
-                possibleType
-            ) {
-                if (index - possibleType.length >= 0) {
-                    var possibleGradient = value.substring(
-                        index - possibleType.length,
-                        index
-                    );
-                    if (possibleGradient === possibleType) {
-                        if (
-                            value.slice(
-                                index - possibleType.length - 10,
-                                index - possibleType.length - 1
-                            ) === "repeating"
-                        ) {
-                            typeGradient = "repeating-".concat(
-                                possibleType,
-                                "gradient"
-                            );
+            [linearGradient, radialGradient, conicGradient].find(
+                function (possibleType) {
+                    if (index - possibleType.length >= 0) {
+                        var possibleGradient = value.substring(
+                            index - possibleType.length,
+                            index
+                        );
+                        if (possibleGradient === possibleType) {
+                            if (
+                                value.slice(
+                                    index - possibleType.length - 10,
+                                    index - possibleType.length - 1
+                                ) === "repeating"
+                            ) {
+                                typeGradient = "repeating-".concat(
+                                    possibleType,
+                                    "gradient"
+                                );
+                                return true;
+                            }
+                            if (
+                                value.slice(
+                                    index - possibleType.length - 8,
+                                    index - possibleType.length - 1
+                                ) === "-webkit"
+                            ) {
+                                typeGradient = "-webkit-".concat(
+                                    possibleType,
+                                    "gradient"
+                                );
+                                return true;
+                            }
+                            typeGradient = "".concat(possibleType, "gradient");
                             return true;
                         }
-                        if (
-                            value.slice(
-                                index - possibleType.length - 8,
-                                index - possibleType.length - 1
-                            ) === "-webkit"
-                        ) {
-                            typeGradient = "-webkit-".concat(
-                                possibleType,
-                                "gradient"
-                            );
-                            return true;
-                        }
-                        typeGradient = "".concat(possibleType, "gradient");
-                        return true;
                     }
                 }
-            });
+            );
             if (!typeGradient) {
                 return "break";
             }
@@ -3154,6 +3238,7 @@
             colorThumb = hslToString(hsl_1);
             colorThumbHover = hslToString(lighten(0.1));
             colorThumbActive = hslToString(lighten(0.2));
+            colorCorner = hslToString(darken(0.5));
         }
         lines.push("::-webkit-scrollbar {");
         lines.push("    background-color: ".concat(colorTrack, ";"));
@@ -3335,48 +3420,54 @@
                     /([^\(\),]+(\([^\(\)]*(\([^\(\)]*\)*[^\(\)]*)?\))?([^\(\), ]|( (?!calc)))*),?/g;
                 var colorStopRegex =
                     /^(from|color-stop|to)\(([^\(\)]*?,\s*)?(.*?)\)$/;
-                var parts = getMatches(partsRegex, match, 1).map(function (
-                    part
-                ) {
-                    part = part.trim();
-                    var rgb = parseColorWithCache(part);
-                    if (rgb) {
-                        return function (filter) {
-                            return modifyGradientColor(rgb, filter);
-                        };
-                    }
-                    var space = part.lastIndexOf(" ");
-                    rgb = parseColorWithCache(part.substring(0, space));
-                    if (rgb) {
-                        return function (filter) {
-                            return ""
-                                .concat(modifyGradientColor(rgb, filter), " ")
-                                .concat(part.substring(space + 1));
-                        };
-                    }
-                    var colorStopMatch = part.match(colorStopRegex);
-                    if (colorStopMatch) {
-                        rgb = parseColorWithCache(colorStopMatch[3]);
+                var parts = getMatches(partsRegex, match, 1).map(
+                    function (part) {
+                        part = part.trim();
+                        var rgb = parseColorWithCache(part);
+                        if (rgb) {
+                            return function (filter) {
+                                return modifyGradientColor(rgb, filter);
+                            };
+                        }
+                        var space = part.lastIndexOf(" ");
+                        rgb = parseColorWithCache(part.substring(0, space));
                         if (rgb) {
                             return function (filter) {
                                 return ""
-                                    .concat(colorStopMatch[1], "(")
-                                    .concat(
-                                        colorStopMatch[2]
-                                            ? "".concat(colorStopMatch[2], ", ")
-                                            : ""
-                                    )
                                     .concat(
                                         modifyGradientColor(rgb, filter),
-                                        ")"
-                                    );
+                                        " "
+                                    )
+                                    .concat(part.substring(space + 1));
                             };
                         }
+                        var colorStopMatch = part.match(colorStopRegex);
+                        if (colorStopMatch) {
+                            rgb = parseColorWithCache(colorStopMatch[3]);
+                            if (rgb) {
+                                return function (filter) {
+                                    return ""
+                                        .concat(colorStopMatch[1], "(")
+                                        .concat(
+                                            colorStopMatch[2]
+                                                ? "".concat(
+                                                      colorStopMatch[2],
+                                                      ", "
+                                                  )
+                                                : ""
+                                        )
+                                        .concat(
+                                            modifyGradientColor(rgb, filter),
+                                            ")"
+                                        );
+                                };
+                            }
+                        }
+                        return function () {
+                            return part;
+                        };
                     }
-                    return function () {
-                        return part;
-                    };
-                });
+                );
                 return function (filter) {
                     return ""
                         .concat(typeGradient, "(")
@@ -3492,6 +3583,11 @@
                     width = imageDetails.width;
                 var result;
                 if (isTooLarge) {
+                    logInfo(
+                        "Not modifying too large image ".concat(
+                            imageDetails.src
+                        )
+                    );
                     result = 'url("'.concat(imageDetails.src, '")');
                 } else if (
                     isDark &&
@@ -3510,6 +3606,11 @@
                     result = 'url("'.concat(inverted, '")');
                 } else if (isLight && !isTransparent && filter.mode === 1) {
                     if (isLarge) {
+                        logInfo(
+                            "Not modifying light non-transparent large image ".concat(
+                                imageDetails.src
+                            )
+                        );
                         result = "none";
                     } else {
                         logInfo(
@@ -3534,6 +3635,11 @@
                     );
                     result = 'url("'.concat(filtered, '")');
                 } else {
+                    logInfo(
+                        "Not modifying too large image ".concat(
+                            imageDetails.src
+                        )
+                    );
                     result = null;
                 }
                 return result;
@@ -3579,7 +3685,7 @@
                             match: match,
                             index: index,
                             typeGradient: typeGradient,
-                            hasComma: hasComma,
+                            hasComma: hasComma || false,
                             offset: offset
                         })
                     );
@@ -4119,8 +4225,9 @@
                 return;
             }
             this.definedVars.add(varName);
-            var color = parseColorWithCache(value);
-            if (color) {
+            var isColor =
+                rawValueRegex.test(value) || parseColorWithCache(value);
+            if (isColor) {
                 this.unknownColorVars.add(varName);
             } else if (
                 value.includes("url(") ||
@@ -4361,8 +4468,8 @@
             if (range) {
                 return {start: start, end: range.end};
             }
-            return null;
         }
+        return null;
     }
     function getVariablesMatches(input) {
         var ranges = [];
@@ -4736,9 +4843,15 @@
         var cache = [];
         var timeoutId = null;
         var handleAttributeMutations = throttle(function (mutations) {
+            var handledTargets = new Set();
             mutations.forEach(function (m) {
+                var target = m.target;
+                if (handledTargets.has(target)) {
+                    return;
+                }
                 if (INLINE_STYLE_ATTRS.includes(m.attributeName)) {
-                    elementStyleDidChange(m.target);
+                    handledTargets.add(target);
+                    elementStyleDidChange(target);
                 }
             });
         });
@@ -5101,6 +5214,9 @@
                         modRules.push(rulesModCache.get(cssText));
                         return;
                     }
+                    if (rule.style.all === "revert") {
+                        return;
+                    }
                     var modDecs = [];
                     rule.style &&
                         iterateCSSDeclarations(
@@ -5250,9 +5366,8 @@
                         important,
                         sourceValue
                     ) {
-                        var _a = modified,
-                            varDecs = _a.declarations,
-                            onTypeChange = _a.onTypeChange;
+                        var varDecs = modified.declarations,
+                            onTypeChange = modified.onTypeChange;
                         var varKey = ++varDeclarationCounter;
                         var currentRenderId = renderId;
                         var initialIndex = readyDeclarations.length;
@@ -5457,9 +5572,9 @@
             (element instanceof HTMLStyleElement ||
                 element instanceof SVGStyleElement ||
                 (element instanceof HTMLLinkElement &&
-                    element.rel &&
+                    Boolean(element.rel) &&
                     element.rel.toLowerCase().includes("stylesheet") &&
-                    element.href &&
+                    Boolean(element.href) &&
                     !element.disabled &&
                     (isFirefox
                         ? !element.href.startsWith("moz-extension://")
@@ -5502,7 +5617,8 @@
         "__darkreader__inlineScriptsAllowed",
         function () {
             canOptimizeUsingProxy$1 = true;
-        }
+        },
+        {once: true, passive: true}
     );
     var loadingLinkCounter = 0;
     var rejectorsForLoadingLinks = new Map();
@@ -5562,6 +5678,9 @@
                     if (rule.href) {
                         if (checkCrossOrigin) {
                             if (
+                                !rule.href.startsWith(
+                                    "https://fonts.googleapis.com/"
+                                ) &&
                                 rule.href.startsWith("http") &&
                                 !rule.href.startsWith(location.origin)
                             ) {
@@ -5653,8 +5772,8 @@
                                 (accessError = _a[1]);
                             if (
                                 !(
-                                    (!cssRules && !accessError && !isSafari) ||
                                     (isSafari && !element.sheet) ||
+                                    (!isSafari && !cssRules && !accessError) ||
                                     isStillLoadingError(accessError)
                                 )
                             )
@@ -5763,6 +5882,9 @@
             }
             cancelAsyncOperations = false;
             function removeCSSRulesFromSheet(sheet) {
+                if (!sheet) {
+                    return;
+                }
                 for (var i = sheet.cssRules.length - 1; i >= 0; i--) {
                     sheet.deleteRule(i);
                 }
@@ -5894,7 +6016,8 @@
         function watchForSheetChangesUsingProxy() {
             element.addEventListener(
                 "__darkreader__updateSheet",
-                onSheetChange
+                onSheetChange,
+                {passive: true}
             );
         }
         function stopWatchingForSheetChangesUsingProxy() {
@@ -5985,8 +6108,10 @@
                             cleanUp();
                             reject();
                         });
-                        link.addEventListener("load", onLoad);
-                        link.addEventListener("error", onError);
+                        link.addEventListener("load", onLoad, {passive: true});
+                        link.addEventListener("error", onError, {
+                            passive: true
+                        });
                         if (!link.href) {
                             onError();
                         }
@@ -6139,53 +6264,73 @@
 
     var observers = [];
     var observedRoots;
+    var definedCustomElements = new Set();
     var undefinedGroups = new Map();
     var elementsDefinitionCallback;
+    function isCustomElement(element) {
+        if (element.tagName.includes("-") || element.getAttribute("is")) {
+            return true;
+        }
+        return false;
+    }
+    function recordUndefinedElement(element) {
+        var tag = element.tagName.toLowerCase();
+        if (!tag.includes("-")) {
+            var extendedTag = element.getAttribute("is");
+            if (extendedTag) {
+                tag = extendedTag;
+            } else {
+                return;
+            }
+        }
+        if (!undefinedGroups.has(tag)) {
+            undefinedGroups.set(tag, new Set());
+            customElementsWhenDefined(tag).then(function () {
+                if (elementsDefinitionCallback) {
+                    var elements = undefinedGroups.get(tag);
+                    undefinedGroups.delete(tag);
+                    elementsDefinitionCallback(Array.from(elements));
+                }
+            });
+        }
+        undefinedGroups.get(tag).add(element);
+    }
     function collectUndefinedElements(root) {
         if (!isDefinedSelectorSupported) {
             return;
         }
-        forEach(root.querySelectorAll(":not(:defined)"), function (el) {
-            var tag = el.tagName.toLowerCase();
-            if (!tag.includes("-")) {
-                var extendedTag = el.getAttribute("is");
-                if (extendedTag) {
-                    tag = extendedTag;
-                } else {
-                    return;
-                }
-            }
-            if (!undefinedGroups.has(tag)) {
-                undefinedGroups.set(tag, new Set());
-                customElementsWhenDefined(tag).then(function () {
-                    if (elementsDefinitionCallback) {
-                        var elements = undefinedGroups.get(tag);
-                        undefinedGroups.delete(tag);
-                        elementsDefinitionCallback(Array.from(elements));
-                    }
-                });
-            }
-            undefinedGroups.get(tag).add(el);
-        });
+        forEach(
+            root.querySelectorAll(":not(:defined)"),
+            recordUndefinedElement
+        );
     }
     var canOptimizeUsingProxy = false;
     document.addEventListener(
         "__darkreader__inlineScriptsAllowed",
         function () {
             canOptimizeUsingProxy = true;
-        }
+        },
+        {once: true, passive: true}
     );
     var resolvers = new Map();
     function handleIsDefined(e) {
         canOptimizeUsingProxy = true;
-        if (resolvers.has(e.detail.tag)) {
-            var resolve = resolvers.get(e.detail.tag);
-            resolve();
+        var tag = e.detail.tag;
+        definedCustomElements.add(tag);
+        if (resolvers.has(tag)) {
+            var r = resolvers.get(tag);
+            resolvers.delete(tag);
+            r.forEach(function (r) {
+                return r();
+            });
         }
     }
     function customElementsWhenDefined(tag) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                if (definedCustomElements.has(tag)) {
+                    return [2];
+                }
                 return [
                     2,
                     new Promise(function (resolve) {
@@ -6197,7 +6342,11 @@
                                 return resolve();
                             });
                         } else if (canOptimizeUsingProxy) {
-                            resolvers.set(tag, resolve);
+                            if (resolvers.has(tag)) {
+                                resolvers.get(tag).push(resolve);
+                            } else {
+                                resolvers.set(tag, [resolve]);
+                            }
                             document.dispatchEvent(
                                 new CustomEvent(
                                     "__darkreader__addUndefinedResolver",
@@ -6317,8 +6466,11 @@
                 movedStyles: movedStyles
             });
             additions.forEach(function (n) {
-                iterateShadowHosts(n, subscribeForShadowRootChanges);
+                extendedIterateShadowHosts(n);
                 collectUndefinedElements(n);
+            });
+            additions.forEach(function (node) {
+                return isCustomElement(node) && recordUndefinedElement(node);
             });
         }
         function handleHugeTreeMutations(root) {
@@ -6350,7 +6502,7 @@
                 removedStyles: removedStyles,
                 movedStyles: movedStyles
             });
-            iterateShadowHosts(root, subscribeForShadowRootChanges);
+            extendedIterateShadowHosts(root);
             collectUndefinedElements(root);
         }
         function handleAttributeMutations(mutations) {
@@ -6379,13 +6531,15 @@
             }
         }
         function observe(root) {
+            if (observedRoots.has(root)) {
+                return;
+            }
             var treeObserver = createOptimizedTreeObserver(root, {
                 onMinorMutations: handleMinorTreeMutations,
                 onHugeMutations: handleHugeTreeMutations
             });
             var attrObserver = new MutationObserver(handleAttributeMutations);
             attrObserver.observe(root, {
-                attributes: true,
                 attributeFilter: ["rel", "disabled", "media", "href"],
                 subtree: true
             });
@@ -6400,11 +6554,11 @@
             observe(shadowRoot);
             shadowRootDiscovered(shadowRoot);
         }
+        function extendedIterateShadowHosts(node) {
+            iterateShadowHosts(node, subscribeForShadowRootChanges);
+        }
         observe(document);
-        iterateShadowHosts(
-            document.documentElement,
-            subscribeForShadowRootChanges
-        );
+        extendedIterateShadowHosts(document.documentElement);
         watchWhenCustomElementsDefined(function (hosts) {
             var newStyles = [];
             hosts.forEach(function (host) {
@@ -6417,11 +6571,13 @@
                     return;
                 }
                 subscribeForShadowRootChanges(host);
-                iterateShadowHosts(shadowRoot, subscribeForShadowRootChanges);
+                extendedIterateShadowHosts(shadowRoot);
                 collectUndefinedElements(shadowRoot);
             });
         });
-        document.addEventListener("__darkreader__isDefined", handleIsDefined);
+        document.addEventListener("__darkreader__isDefined", handleIsDefined, {
+            passive: true
+        });
         collectUndefinedElements(document);
     }
     function resetObservers() {
@@ -6434,27 +6590,6 @@
     function stopWatchingForStyleChanges() {
         resetObservers();
         unsubscribeFromDefineCustomElements();
-    }
-
-    function hexify(number) {
-        return (number < 16 ? "0" : "") + number.toString(16);
-    }
-    function generateUID() {
-        if ("randomUUID" in crypto) {
-            var uuid = crypto.randomUUID();
-            return (
-                uuid.substring(0, 8) +
-                uuid.substring(9, 13) +
-                uuid.substring(14, 18) +
-                uuid.substring(19, 23) +
-                uuid.substring(24)
-            );
-        }
-        return Array.from(crypto.getRandomValues(new Uint8Array(16)))
-            .map(function (x) {
-                return hexify(x);
-            })
-            .join("");
     }
 
     var adoptedStyleOverrides = new WeakMap();
@@ -6532,7 +6667,10 @@
         };
     }
 
-    function injectProxy(enableStyleSheetsProxy) {
+    function injectProxy(
+        enableStyleSheetsProxy,
+        enableCustomElementRegistryProxy
+    ) {
         document.dispatchEvent(
             new CustomEvent("__darkreader__inlineScriptsAllowed")
         );
@@ -6555,6 +6693,13 @@
         var documentStyleSheetsDescriptor = enableStyleSheetsProxy
             ? Object.getOwnPropertyDescriptor(Document.prototype, "styleSheets")
             : null;
+        var customElementRegistryDefineDescriptor =
+            enableCustomElementRegistryProxy
+                ? Object.getOwnPropertyDescriptor(
+                      CustomElementRegistry.prototype,
+                      "define"
+                  )
+                : null;
         var shouldWrapHTMLElement = [
             "baidu.com",
             "baike.baidu.com",
@@ -6572,6 +6717,10 @@
                   Element.prototype,
                   "getElementsByTagName"
               )
+            : null;
+        var shouldProxyChildNodes = location.hostname === "www.vy.no";
+        var childNodesDescriptor = shouldProxyChildNodes
+            ? Object.getOwnPropertyDescriptor(Node.prototype, "childNodes")
             : null;
         var cleanUp = function () {
             Object.defineProperty(
@@ -6606,6 +6755,13 @@
                     documentStyleSheetsDescriptor
                 );
             }
+            if (enableCustomElementRegistryProxy) {
+                Object.defineProperty(
+                    CustomElementRegistry.prototype,
+                    "define",
+                    customElementRegistryDefineDescriptor
+                );
+            }
             if (shouldWrapHTMLElement) {
                 Object.defineProperty(
                     Element.prototype,
@@ -6613,27 +6769,43 @@
                     getElementsByTagNameDescriptor
                 );
             }
+            if (shouldProxyChildNodes) {
+                Object.defineProperty(
+                    Node.prototype,
+                    "childNodes",
+                    childNodesDescriptor
+                );
+            }
         };
-        var addUndefinedResolver = function (e) {
-            customElements.whenDefined(e.detail.tag).then(function () {
+        var addUndefinedResolverInner = function (tag) {
+            customElements.whenDefined(tag).then(function () {
                 document.dispatchEvent(
                     new CustomEvent("__darkreader__isDefined", {
-                        detail: {tag: e.detail.tag}
+                        detail: {tag: tag}
                     })
                 );
             });
         };
-        document.addEventListener("__darkreader__cleanUp", cleanUp);
+        var addUndefinedResolver = function (e) {
+            return addUndefinedResolverInner(e.detail.tag);
+        };
+        document.addEventListener("__darkreader__cleanUp", cleanUp, {
+            passive: true
+        });
         document.addEventListener(
             "__darkreader__addUndefinedResolver",
-            addUndefinedResolver
+            addUndefinedResolver,
+            {passive: true}
         );
         var updateSheetEvent = new Event("__darkreader__updateSheet");
         function proxyAddRule(selector, style, index) {
             addRuleDescriptor.value.call(this, selector, style, index);
             if (
                 this.ownerNode &&
-                !this.ownerNode.classList.contains("darkreader")
+                !(
+                    this.ownerNode.classList &&
+                    this.ownerNode.classList.contains("darkreader")
+                )
             ) {
                 this.ownerNode.dispatchEvent(updateSheetEvent);
             }
@@ -6647,7 +6819,10 @@
             );
             if (
                 this.ownerNode &&
-                !this.ownerNode.classList.contains("darkreader")
+                !(
+                    this.ownerNode.classList &&
+                    this.ownerNode.classList.contains("darkreader")
+                )
             ) {
                 this.ownerNode.dispatchEvent(updateSheetEvent);
             }
@@ -6657,7 +6832,10 @@
             deleteRuleDescriptor.value.call(this, index);
             if (
                 this.ownerNode &&
-                !this.ownerNode.classList.contains("darkreader")
+                !(
+                    this.ownerNode.classList &&
+                    this.ownerNode.classList.contains("darkreader")
+                )
             ) {
                 this.ownerNode.dispatchEvent(updateSheetEvent);
             }
@@ -6666,7 +6844,10 @@
             removeRuleDescriptor.value.call(this, index);
             if (
                 this.ownerNode &&
-                !this.ownerNode.classList.contains("darkreader")
+                !(
+                    this.ownerNode.classList &&
+                    this.ownerNode.classList.contains("darkreader")
+                )
             ) {
                 this.ownerNode.dispatchEvent(updateSheetEvent);
             }
@@ -6680,8 +6861,14 @@
                     __read(docSheets),
                     false
                 ).filter(function (styleSheet) {
-                    return !styleSheet.ownerNode.classList.contains(
-                        "darkreader"
+                    return (
+                        styleSheet.ownerNode &&
+                        !(
+                            styleSheet.ownerNode.classList &&
+                            styleSheet.ownerNode.classList.contains(
+                                "darkreader"
+                            )
+                        )
                     );
                 });
                 filteredSheets.item = function (item) {
@@ -6701,6 +6888,15 @@
             elements = new Proxy(elements, styleSheetListBehavior);
             return elements;
         }
+        function proxyCustomElementRegistryDefine(name, constructor, options) {
+            addUndefinedResolverInner(name);
+            customElementRegistryDefineDescriptor.value.call(
+                this,
+                name,
+                constructor,
+                options
+            );
+        }
         function proxyGetElementsByTagName(tagName) {
             var _this = this;
             if (tagName !== "style") {
@@ -6712,11 +6908,17 @@
                     tagName
                 );
                 return Object.setPrototypeOf(
-                    __spreadArray([], __read(elements), false).filter(function (
-                        element
-                    ) {
-                        return !element.classList.contains("darkreader");
-                    }),
+                    __spreadArray([], __read(elements), false).filter(
+                        function (element) {
+                            return (
+                                element &&
+                                !(
+                                    element.classList &&
+                                    element.classList.contains("darkreader")
+                                )
+                            );
+                        }
+                    ),
                     NodeList.prototype
                 );
             };
@@ -6730,6 +6932,20 @@
             };
             elements = new Proxy(elements, nodeListBehavior);
             return elements;
+        }
+        function proxyChildNodes() {
+            var childNodes = childNodesDescriptor.get.call(this);
+            return Object.setPrototypeOf(
+                __spreadArray([], __read(childNodes), false).filter(
+                    function (element) {
+                        return (
+                            !element.classList ||
+                            !element.classList.contains("darkreader")
+                        );
+                    }
+                ),
+                NodeList.prototype
+            );
         }
         Object.defineProperty(
             CSSStyleSheet.prototype,
@@ -6760,6 +6976,15 @@
                 })
             );
         }
+        if (enableCustomElementRegistryProxy) {
+            Object.defineProperty(
+                CustomElementRegistry.prototype,
+                "define",
+                Object.assign({}, customElementRegistryDefineDescriptor, {
+                    value: proxyCustomElementRegistryDefine
+                })
+            );
+        }
         if (shouldWrapHTMLElement) {
             Object.defineProperty(
                 Element.prototype,
@@ -6769,6 +6994,74 @@
                 })
             );
         }
+        if (shouldProxyChildNodes) {
+            Object.defineProperty(
+                Node.prototype,
+                "childNodes",
+                Object.assign({}, childNodesDescriptor, {get: proxyChildNodes})
+            );
+        }
+    }
+
+    var documentVisibilityListener = null;
+    var documentIsVisible_ = !document.hidden;
+    var listenerOptions = {
+        capture: true,
+        passive: true
+    };
+    function watchForDocumentVisibility() {
+        document.addEventListener(
+            "visibilitychange",
+            documentVisibilityListener,
+            listenerOptions
+        );
+        window.addEventListener(
+            "pageshow",
+            documentVisibilityListener,
+            listenerOptions
+        );
+        window.addEventListener(
+            "focus",
+            documentVisibilityListener,
+            listenerOptions
+        );
+    }
+    function stopWatchingForDocumentVisibility() {
+        document.removeEventListener(
+            "visibilitychange",
+            documentVisibilityListener,
+            listenerOptions
+        );
+        window.removeEventListener(
+            "pageshow",
+            documentVisibilityListener,
+            listenerOptions
+        );
+        window.removeEventListener(
+            "focus",
+            documentVisibilityListener,
+            listenerOptions
+        );
+    }
+    function setDocumentVisibilityListener(callback) {
+        var alreadyWatching = Boolean(documentVisibilityListener);
+        documentVisibilityListener = function () {
+            if (!document.hidden) {
+                removeDocumentVisibilityListener();
+                callback();
+                documentIsVisible_ = true;
+            }
+        };
+        if (!alreadyWatching) {
+            watchForDocumentVisibility();
+        }
+    }
+    function removeDocumentVisibilityListener() {
+        stopWatchingForDocumentVisibility();
+        documentVisibilityListener = null;
+    }
+    function documentIsVisible() {
+        return documentIsVisible_;
     }
 
     var INSTANCE_ID = generateUID();
@@ -6777,8 +7070,8 @@
     var filter = null;
     var fixes = null;
     var isIFrame$1 = null;
-    var ignoredImageAnalysisSelectors = null;
-    var ignoredInlineSelectors = null;
+    var ignoredImageAnalysisSelectors = [];
+    var ignoredInlineSelectors = [];
     function createOrUpdateStyle(className, root) {
         if (root === void 0) {
             root = document.head || document;
@@ -6809,7 +7102,7 @@
     function setupNodePositionWatcher(node, alias) {
         nodePositionWatchers.has(alias) &&
             nodePositionWatchers.get(alias).stop();
-        nodePositionWatchers.set(alias, watchForNodePosition(node, "parent"));
+        nodePositionWatchers.set(alias, watchForNodePosition(node, "head"));
     }
     function stopStylePositionWatchers() {
         forEach(nodePositionWatchers.values(), function (watcher) {
@@ -6876,11 +7169,12 @@
         setupNodePositionWatcher(overrideStyle, "override");
         var variableStyle = createOrUpdateStyle("darkreader--variables");
         var selectionColors = getSelectionColor(filter);
-        var darkSchemeBackgroundColor = filter.darkSchemeBackgroundColor,
-            darkSchemeTextColor = filter.darkSchemeTextColor,
-            lightSchemeBackgroundColor = filter.lightSchemeBackgroundColor,
-            lightSchemeTextColor = filter.lightSchemeTextColor,
-            mode = filter.mode;
+        var _a = filter,
+            darkSchemeBackgroundColor = _a.darkSchemeBackgroundColor,
+            darkSchemeTextColor = _a.darkSchemeTextColor,
+            lightSchemeBackgroundColor = _a.lightSchemeBackgroundColor,
+            lightSchemeTextColor = _a.lightSchemeTextColor,
+            mode = _a.mode;
         var schemeBackgroundColor =
             mode === 0 ? lightSchemeBackgroundColor : darkSchemeBackgroundColor;
         var schemeTextColor =
@@ -6914,18 +7208,24 @@
         setupNodePositionWatcher(variableStyle, "variables");
         var rootVarsStyle = createOrUpdateStyle("darkreader--root-vars");
         document.head.insertBefore(rootVarsStyle, variableStyle.nextSibling);
-        var injectProxyArg = !(fixes && fixes.disableStyleSheetsProxy);
+        var enableStyleSheetsProxy = !(fixes && fixes.disableStyleSheetsProxy);
+        var enableCustomElementRegistryProxy = !(
+            fixes && fixes.disableCustomElementRegistryProxy
+        );
         {
             var proxyScript = createOrUpdateScript("darkreader--proxy");
             proxyScript.append(
-                "(".concat(injectProxy, ")(").concat(injectProxyArg, ")")
+                "("
+                    .concat(injectProxy, ")(")
+                    .concat(enableStyleSheetsProxy, ", ")
+                    .concat(enableCustomElementRegistryProxy, ")")
             );
             document.head.insertBefore(proxyScript, rootVarsStyle.nextSibling);
             proxyScript.remove();
         }
     }
     var shadowRootsWithOverrides = new Set();
-    function createShadowStaticStyleOverrides(root) {
+    function createShadowStaticStyleOverridesInner(root) {
         var inlineStyle = createOrUpdateStyle("darkreader--inline", root);
         inlineStyle.textContent = getInlineOverrideStyle();
         root.insertBefore(inlineStyle, root.firstChild);
@@ -6955,6 +7255,81 @@
         }
         root.insertBefore(invertStyle, overrideStyle.nextSibling);
         shadowRootsWithOverrides.add(root);
+    }
+    function delayedCreateShadowStaticStyleOverrides(root) {
+        var observer = new MutationObserver(function (mutations, observer) {
+            var e_1, _a, e_2, _b;
+            observer.disconnect();
+            try {
+                for (
+                    var mutations_1 = __values(mutations),
+                        mutations_1_1 = mutations_1.next();
+                    !mutations_1_1.done;
+                    mutations_1_1 = mutations_1.next()
+                ) {
+                    var _c = mutations_1_1.value,
+                        type = _c.type,
+                        removedNodes = _c.removedNodes;
+                    if (type === "childList") {
+                        try {
+                            for (
+                                var _d =
+                                        ((e_2 = void 0),
+                                        __values(removedNodes)),
+                                    _e = _d.next();
+                                !_e.done;
+                                _e = _d.next()
+                            ) {
+                                var _f = _e.value,
+                                    nodeName = _f.nodeName,
+                                    className = _f.className;
+                                if (
+                                    nodeName === "STYLE" &&
+                                    [
+                                        "darkreader darkreader--inline",
+                                        "darkreader darkreader--override",
+                                        "darkreader darkreader--invert"
+                                    ].includes(className)
+                                ) {
+                                    createShadowStaticStyleOverridesInner(root);
+                                    return;
+                                }
+                            }
+                        } catch (e_2_1) {
+                            e_2 = {error: e_2_1};
+                        } finally {
+                            try {
+                                if (_e && !_e.done && (_b = _d.return))
+                                    _b.call(_d);
+                            } finally {
+                                if (e_2) throw e_2.error;
+                            }
+                        }
+                    }
+                }
+            } catch (e_1_1) {
+                e_1 = {error: e_1_1};
+            } finally {
+                try {
+                    if (
+                        mutations_1_1 &&
+                        !mutations_1_1.done &&
+                        (_a = mutations_1.return)
+                    )
+                        _a.call(mutations_1);
+                } finally {
+                    if (e_1) throw e_1.error;
+                }
+            }
+        });
+        observer.observe(root, {childList: true});
+    }
+    function createShadowStaticStyleOverrides(root) {
+        var uninit = root.firstChild === null;
+        createShadowStaticStyleOverridesInner(root);
+        if (uninit) {
+            delayedCreateShadowStaticStyleOverrides(root);
+        }
     }
     function replaceCSSTemplates($cssText) {
         return $cssText.replace(/\${(.+?)}/g, function (_, $color) {
@@ -6993,15 +7368,11 @@
             });
         variablesStore.matchVariablesAndDependants();
         variablesStore.setOnRootVariableChange(function () {
-            variablesStore.putRootVars(
-                document.head.querySelector(".darkreader--root-vars"),
-                filter
-            );
+            var rootVarsStyle = createOrUpdateStyle("darkreader--root-vars");
+            variablesStore.putRootVars(rootVarsStyle, filter);
         });
-        variablesStore.putRootVars(
-            document.head.querySelector(".darkreader--root-vars"),
-            filter
-        );
+        var rootVarsStyle = createOrUpdateStyle("darkreader--root-vars");
+        variablesStore.putRootVars(rootVarsStyle, filter);
         styleManagers.forEach(function (manager) {
             return manager.render(filter, ignoredImageAnalysisSelectors);
         });
@@ -7038,7 +7409,7 @@
     function createManager(element) {
         var loadingStyleId = ++loadingStylesCounter;
         function loadingStart() {
-            if (!isDOMReady() || !didDocumentShowUp) {
+            if (!isDOMReady() || !documentIsVisible()) {
                 loadingStyles.add(loadingStyleId);
                 logInfo(
                     "Current amount of styles loading: ".concat(
@@ -7109,39 +7480,14 @@
             return;
         }
     }
-    var documentVisibilityListener = null;
-    var didDocumentShowUp = !document.hidden;
-    function watchForDocumentVisibility(callback) {
-        var alreadyWatching = Boolean(documentVisibilityListener);
-        documentVisibilityListener = function () {
-            if (!document.hidden) {
-                stopWatchingForDocumentVisibility();
-                callback();
-                didDocumentShowUp = true;
-            }
-        };
-        if (!alreadyWatching) {
-            document.addEventListener(
-                "visibilitychange",
-                documentVisibilityListener
-            );
-        }
-    }
-    function stopWatchingForDocumentVisibility() {
-        document.removeEventListener(
-            "visibilitychange",
-            documentVisibilityListener
-        );
-        documentVisibilityListener = null;
+    function runDynamicStyle() {
+        createDynamicStyleOverrides();
+        watchForUpdates();
     }
     function createThemeAndWatchForUpdates() {
         createStaticStyleOverrides();
-        function runDynamicStyle() {
-            createDynamicStyleOverrides();
-            watchForUpdates();
-        }
-        if (document.hidden && !filter.immediateModify) {
-            watchForDocumentVisibility(runDynamicStyle);
+        if (!documentIsVisible() && !filter.immediateModify) {
+            setDocumentVisibilityListener(runDynamicStyle);
         } else {
             runDynamicStyle();
         }
@@ -7224,12 +7570,10 @@
                     var styleAttr = element.getAttribute("style") || "";
                     if (styleAttr.includes("--")) {
                         variablesStore.matchVariablesAndDependants();
-                        variablesStore.putRootVars(
-                            document.head.querySelector(
-                                ".darkreader--root-vars"
-                            ),
-                            filter
+                        var rootVarsStyle = createOrUpdateStyle(
+                            "darkreader--root-vars"
                         );
+                        variablesStore.putRootVars(rootVarsStyle, filter);
                     }
                 }
             },
@@ -7293,7 +7637,7 @@
         addMetaListener();
         return false;
     }
-    function createOrUpdateDynamicTheme(
+    function createOrUpdateDynamicThemeInternal(
         filterConfig,
         dynamicThemeFixes,
         iframe
@@ -7321,6 +7665,7 @@
         isIFrame$1 = iframe;
         if (document.head) {
             if (isAnotherDarkReaderInstanceActive()) {
+                removeDynamicTheme();
                 return;
             }
             document.documentElement.setAttribute(
@@ -7394,7 +7739,7 @@
     function cleanDynamicThemeCache() {
         variablesStore.clear();
         parsedURLCache.clear();
-        stopWatchingForDocumentVisibility();
+        removeDocumentVisibilityListener();
         cancelRendering();
         stopWatchingForUpdates();
         cleanModificationCache();
@@ -7504,7 +7849,7 @@
         if (theme.engine !== ThemeEngine.dynamicTheme) {
             throw new Error("Theme engine is not supported.");
         }
-        createOrUpdateDynamicTheme(theme, fixes, isIFrame);
+        createOrUpdateDynamicThemeInternal(theme, fixes, isIFrame);
         isDarkReaderEnabled = true;
     }
     function isEnabled() {
